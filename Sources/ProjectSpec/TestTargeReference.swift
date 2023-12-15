@@ -32,6 +32,9 @@ extension TestableTargetReference {
     public init(_ string: String) throws {
         let paths = string.split(separator: "/")
         switch paths.count {
+        case 3 where String(paths[0]) == "Package":
+            location = .package(String(paths[1]))
+            name = String(paths[2])
         case 2:
             location = .project(String(paths[0]))
             name = String(paths[1])
